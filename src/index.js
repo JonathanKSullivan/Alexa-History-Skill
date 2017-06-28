@@ -3,8 +3,13 @@ var Alexa = require('alexa-sdk');
 var APP_ID = undefined;  // can be replaced with your app ID if publishing
 var facts = require('./facts');
 var GET_FACT_MSG_EN = [
-    "Here's your fact: "
-]
+    "Here's your fact: ",
+    "Now you know: ",
+    "The fact is: ",
+    "The Information you requested: ",
+    "Your wish is my command: "
+
+];
 // Test hooks - do not remove!
 exports.GetFactMsg = GET_FACT_MSG_EN;
 var APP_ID_TEST = "mochatest";  // used for mocha tests to prevent warning
@@ -18,7 +23,7 @@ var languageStrings = {
         "translation": {
             "FACTS": facts.FACTS_EN,
             "SKILL_NAME": "My History Facts",  // OPTIONAL change this to a more descriptive name
-            "GET_FACT_MESSAGE": GET_FACT_MSG_EN[0],
+            "GET_FACT_MESSAGE": GET_FACT_MSG_EN,
             "HELP_MESSAGE": "You can say tell me a fact, or, you can say exit... What can I help you with?",
             "HELP_REPROMPT": "What can I help you with?",
             "STOP_MESSAGE": "Goodbye!"
@@ -40,10 +45,6 @@ exports.handler = function (event, context, callback) {
 };
 
 /*
-    TODO (Part 2) add an intent for specifying a fact by year named 'GetNewYearFactIntent'
-    TODO (Part 2) provide a function for the new intent named 'GetYearFact' 
-        that emits a randomized fact that includes the year requested by the user
-        - if such a fact is not available, tell the user this and provide an alternative fact.
     TODO (Part 3) Keep the session open by providing the fact with :askWithCard instead of :tellWithCard
         - make sure the user knows that they need to respond
         - provide a reprompt that lets the user know how they can respond
@@ -59,6 +60,9 @@ var handlers = {
     'GetNewFactIntent': function () {
         this.emit('GetFact');
     },
+    'GetNewYearFactIntent': function () {
+        this.emit('GetYearFact');
+    },
     'GetFact': function () {
         // Get a random fact from the facts list
         // Use this.t() to get corresponding language data
@@ -66,11 +70,24 @@ var handlers = {
         var randomFact = randomPhrase(factArr);
 
         // Create speech output
-        var speechOutput = this.t("GET_FACT_MESSAGE") + randomFact;
-        this.emit(':tellWithCard', speechOutput, this.t("SKILL_NAME"), randomFact)
+        var speechOutput = randomPhrase(this.t("GET_FACT_MESSAGE")) + randomFact;
+        var repromptSpeech = 'Say it again?';
+        this.emit(':askWithCard', speechOutput, randomPhrase(this.t("SKILL_NAME")), randomFact, repromptSpeech)
     },
-    'GetNewYearFactIntent': function () {
+    'GetYearFact': function () {
         //TODO your code here
+        var year = this.event.request.intent.slots.FACT_YEAR.value;
+        var factArr = this.t('FACTS');
+        var randomFact = randomPhraseWithYear(factArr, year);
+        var randomFact1 = randomPhrase(factArr);
+
+        // Create speech output
+        var speechOutput = this.t("GET_FACT_MESSAGE") +" "+ randomFact + " fact for "+ year;
+        var repromptSpeech = 'Say it again?';
+        this.emit(':askWithCard', speechOutput, this.t("SKILL_NAME"), randomFact, repromptSpeech, randomFact1);
+        //console.log(this.response);
+        
+
     },
     'AMAZON.HelpIntent': function () {
         var speechOutput = this.t("HELP_MESSAGE");
@@ -91,4 +108,25 @@ function randomPhrase(phraseArr) {
     var i = 0;
     i = Math.floor(Math.random() * phraseArr.length);
     return (phraseArr[i]);
+};
+function randomPhraseWithYear(phraseArr, year) {
+    // returns a random phrase
+    // where phraseArr is an array of string phrases
+    var index;
+    var value;
+    var resultArr = [];
+    for (index = 0; index < phraseArr.length; ++index) {
+        value = phraseArr[index];
+        if (value.includes(year)) {
+            resultArr.push(value);
+        }
+    }
+    if (resultArr.length != 0){
+        var i = 0;
+        i = Math.floor(Math.random() * phraseArr.length);
+        return (phraseArr[i]);
+    }else{
+        return "I dont seem to know about "+year+" yet"
+    }
+
 };

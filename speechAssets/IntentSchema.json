@@ -1,16 +1,80 @@
 {
   "intents": [
     {
-      "intent": "GetNewFactIntent"
+      "name": "AMAZON.CancelIntent",
+      "samples": []
     },
     {
-      "intent": "AMAZON.HelpIntent"
+      "name": "AMAZON.HelpIntent",
+      "samples": []
     },
     {
-      "intent": "AMAZON.StopIntent"
+      "name": "AMAZON.StopIntent",
+      "samples": []
     },
     {
-      "intent": "AMAZON.CancelIntent"
+      "intent": "GetNewFactIntent",
+      "samples": [
+        "a fact",
+        "tell me a fact",
+        "give me a fact",
+        "give me something",
+        "a history fact",
+        "tell me a history fact",
+        "give me a history fact",
+        "tell me trivia",
+        "tell me a history trivia",
+        "give me trivia",
+        "give me a history trivia",
+        "give me some information",
+        "give me some history information",
+        "tell me something",
+        "tell about history"
+      ],
+      "slots": []
+    },
+    {
+      "intent": "GetNewYearFactIntent",
+      "samples": [
+        "What happened in year {FACT_YEAR}",
+        "tell me a fact about {FACT_YEAR}",
+        "give me a fact about {FACT_YEAR}",
+        "give me something about {FACT_YEAR}",
+        "a history fact about {FACT_YEAR}",
+        "tell me a history fact about {FACT_YEAR}",
+        "give me a history fact about {FACT_YEAR}",
+        "tell me trivia about {FACT_YEAR}",
+        "tell me a history trivia about {FACT_YEAR}",
+        "give me trivia about {FACT_YEAR}",
+        "give me a history trivia about {FACT_YEAR}",
+        "give me some information about {FACT_YEAR}",
+        "give me some history informationv",
+        "tell me something about {FACT_YEAR}",
+        "tell about history about {FACT_YEAR}"
+      ],
+      "slots": [
+        {
+          "name": "FACT_YEAR",
+          "type": "AMAZON.FOUR_DIGIT_NUMBER",
+          "samples": [
+          "1950",
+          "2001",
+          "2000", 
+          "1967", 
+          "1908", 
+          "1980",
+          "2011",
+          "2016",
+          "2005",
+          "1934",
+          "1940",
+          "1923",
+          "1865",
+          "1760",
+          "1619"
+          ]
+        }
+      ]
     }
   ]
 }
