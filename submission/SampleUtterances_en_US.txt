@@ -1,0 +1,44 @@
+GetNewFactIntent a fact
+GetNewFactIntent tell me a fact
+GetNewFactIntent give me a fact
+GetNewFactIntent give me something
+GetNewFactIntent a history fact
+GetNewFactIntent tell me a history fact
+GetNewFactIntent give me a history fact
+GetNewFactIntent tell me trivia
+GetNewFactIntent tell me a history trivia
+GetNewFactIntent give me trivia
+GetNewFactIntent give me a history trivia
+GetNewFactIntent give me some information
+GetNewFactIntent give me some history information
+GetNewFactIntent tell me something
+GetNewYearFactIntent GetNewFactIntent tell about history
+GetNewYearFactIntent What happened in year {FACT_YEAR}
+GetNewYearFactIntent tell me a fact about {FACT_YEAR}
+GetNewYearFactIntent give me a fact about {FACT_YEAR}
+GetNewYearFactIntent give me something about {FACT_YEAR}
+GetNewYearFactIntent a history fact about {FACT_YEAR}
+GetNewYearFactIntent tell me a history fact about {FACT_YEAR}
+GetNewYearFactIntent give me a history fact about {FACT_YEAR}
+GetNewYearFactIntent tell me trivia about {FACT_YEAR}
+GetNewYearFactIntent tell me a history trivia about {FACT_YEAR}
+GetNewYearFactIntent give me trivia about {FACT_YEAR}
+GetNewYearFactIntent give me a history trivia about {FACT_YEAR}","give me some information about {FACT_YEAR}
+GetNewYearFactIntent give me some history informationv
+GetNewYearFactIntent tell me something about {FACT_YEAR}
+GetNewYearFactIntent tell about history about {FACT_YEAR} 
+{FACT_YEAR} 1950
+{FACT_YEAR} 2001
+{FACT_YEAR} 2000
+{FACT_YEAR} 1967
+{FACT_YEAR} 1908
+{FACT_YEAR} 1980
+{FACT_YEAR} 2011
+{FACT_YEAR} 2016
+{FACT_YEAR} 2005
+{FACT_YEAR} 1934
+{FACT_YEAR} 1940
+{FACT_YEAR} 1923
+{FACT_YEAR} 1865
+{FACT_YEAR} 1760
+{FACT_YEAR} 1619

@@ -41,6 +41,7 @@ describe("Test Part 3", function () {
             it("should have a reprompt available", () => {
                 var msg = speechResponse.response.outputSpeech.ssml;
                 resultArr.push(msg);
+                //console.log(speechResponse.response)
                 expect(speechResponse.response.reprompt).to.exist
             })
         })
@@ -82,7 +83,8 @@ describe("Test Part 3", function () {
                     resultArr.push(msg);
                     var atLeastOneNew = false;
                     var numPhrasesUsed = utils.calcNumPhrasesIncluded(resultArr, index.GetFactMsg);
-                    expect(numPhrasesUsed).to.be.gt(1)
+                    console.log(numPhrasesUsed);
+                    expect(numPhrasesUsed).to.be.gt(1);
                 })
             })
         })
